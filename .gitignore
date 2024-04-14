@@ -1,5 +1,8 @@
 # Environments
 mushroom_env
 
+# Directories
+src.egg-info/
+
 # Auxiliary Files
 template.py

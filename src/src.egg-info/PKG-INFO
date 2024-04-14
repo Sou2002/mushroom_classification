@@ -1,9 +1,0 @@
-Metadata-Version: 2.1
-Name: src
-Version: 0.0.1
-Summary: A small python package for mushroom classification
-Home-page: https://github.com/Sou2002/mushroom_classification
-Author: Sou2002
-Author-email: souravbnjee07@gmail.com
-Project-URL: Bug Tracker, https://github.com/Sou2002/mushroom_classification/issues
-License-File: LICENSE
