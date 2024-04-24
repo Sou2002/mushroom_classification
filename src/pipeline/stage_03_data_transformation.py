@@ -7,7 +7,7 @@ from pathlib import Path
 STAGE_NAME = "Data Transforamtion stage"
 
 
-class DataTransfromationTrainingPipeline:
+class DataTransformationTrainingPipeline:
     def __init__(self):
         pass
 
