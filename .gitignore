@@ -4,6 +4,7 @@ mushroom_env
 # Directories
 src.egg-info/
 __pycache__/
+artifacts/
 
 # Auxiliary Files
 template.py
