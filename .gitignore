@@ -3,6 +3,10 @@ mushroom_env
 
 # Directories
 src.egg-info/
+__pycache__/
 
 # Auxiliary Files
 template.py
+
+# Logs Files
+*.log
