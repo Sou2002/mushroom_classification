@@ -31,3 +31,13 @@ class ModelTrainerConfig:
     model_name: str
     n_estimators: int
     TARGET_COLUMN: str
+
+
+@dataclass(frozen=True)
+class ModelEvaluationConfig:
+    root_dir: Path
+    test_data_path: Path
+    model_path: Path
+    metric_file_name: Path
+    all_params: dict
+    target_column: str
