@@ -1,3 +1,2 @@
 RandomForestClassifier:
-  max_depth: None
   n_estimators: 10
