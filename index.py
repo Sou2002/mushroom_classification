@@ -2,7 +2,7 @@ import streamlit as st
 
 st.title("Mushroom Classification")
 
-st.markdown("<h1>Attributes</h1>", unsafe_allow_html=True)
+st.markdown("### Select Characteristics")
 
 with st.form("form 1"):
     col1, col2, col3 = st.columns(3)
