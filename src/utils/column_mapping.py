@@ -12,7 +12,7 @@ mapping = {
     },
 
     "bruises": {
-        "bruises": "t", "no": "f"
+        "yes": "t", "no": "f"
     },
 
     "odor": {
