@@ -58,7 +58,7 @@ with st.form("form 1"):
 
     submit = st.form_submit_button("Submit")
 
-    url = ''
+    url = 'localhost:8000/predict'
 
     if submit:
         if not all(my_dict.values()):
