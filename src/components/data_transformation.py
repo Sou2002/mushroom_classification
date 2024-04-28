@@ -4,6 +4,7 @@ from sklearn.preprocessing import LabelEncoder
 from sklearn.model_selection import train_test_split
 import pandas as pd
 from src.entity.config_entity import (DataTransformationConfig)
+import joblib
 
 
 class DataTransformation:
@@ -16,6 +17,9 @@ class DataTransformation:
 
         self.data = self.data.apply(
             lambda x: le.fit_transform(x) if x.dtype == 'O' else x)
+
+        joblib.dump(le, os.path.join(
+            self.config.root_dir, self.config.encoder_name))
 
     def train_test_splitting(self) -> None:
         train, test = train_test_split(self.data, test_size=0.2)

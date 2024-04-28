@@ -22,6 +22,7 @@ class DataValidationConfig:
 class DataTransformationConfig:
     root_dir: Path
     data_path: Path
+    encoder_name: Path
 
 
 @dataclass(frozen=True)
