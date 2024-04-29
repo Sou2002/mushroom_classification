@@ -13,12 +13,14 @@ class DataTransformation:
         self.data = pd.read_csv(self.config.data_path)
 
     def label_encoding(self) -> None:
-        le = LabelEncoder()
+        label_encoders: dict = {}
 
-        self.data = self.data.apply(
-            lambda x: le.fit_transform(x) if x.dtype == 'O' else x)
+        for col in self.data.columns:
+            le = LabelEncoder()
+            self.data[col] = le.fit_transform(self.data[col])
+            label_encoders[col] = le
 
-        joblib.dump(le, os.path.join(
+        joblib.dump(label_encoders, os.path.join(
             self.config.root_dir, self.config.encoder_name))
 
     def train_test_splitting(self) -> None:
