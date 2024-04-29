@@ -7,7 +7,7 @@ st.title("Mushroom Classification")
 
 st.markdown("### Select Characteristics")
 
-my_dict = {}
+my_dict: dict = {}
 
 with st.form("form 1"):
     col1, col2, col3 = st.columns(3)
@@ -23,7 +23,7 @@ with st.form("form 1"):
                                                       'Fishy', 'Foul', 'Musty', 'None', 'Pungent', 'Spicy'), index=None, placeholder='Choose an option')
     my_dict['gill-attachment'] = col3.selectbox('Gill Attachment', options=(
         'Attached', 'Descending', 'Free', 'Notched'), index=None, placeholder='Choose an option')
-    my_dict['gill-spacing'] = col1.selectbox('Gill Spacing', options=('Closed', 'Crowded',
+    my_dict['gill-spacing'] = col1.selectbox('Gill Spacing', options=('Close', 'Crowded',
                                                                        'Distant'), index=None, placeholder='Choose an option')
     my_dict['gill-size'] = col2.selectbox('Gill Size', options=('Broad', 'Narrow'),
                                           index=None, placeholder='Choose an option')
@@ -58,10 +58,12 @@ with st.form("form 1"):
 
     submit = st.form_submit_button("Submit")
 
-    url = 'localhost:8000/predict'
+    url = 'http://localhost:8000/predict'
 
     if submit:
         if not all(my_dict.values()):
             st.error('##### **Please fill all the fields.**')
         else:
             req = requests.post(url, data=my_dict)
+            st.write(my_dict, type(my_dict))
+            print(req.text)

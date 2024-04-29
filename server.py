@@ -39,7 +39,7 @@ def transform_data(data: dict) -> list[int]:
 
 
 @app.post("/predict")
-def predict_edibility(features: dict):
+async def predict_edibility(features: dict):
     try:
         load_artifacts()
         transformed_features = transform_data(features)
