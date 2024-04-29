@@ -24,12 +24,59 @@ def load_artifacts() -> None:
 
 
 def transform_data(data: dict) -> list[int]:
-    new_data = {key: mapping[key][value.lower()] for key, value in data.items()}
-    return ENCODER.transform(new_data.values())
+    new_data: dict = {key: mapping[key][value.lower()]
+                      for key, value in data.items()}
+
+    encoded_list: list = []
+    for key, value in new_data.items():
+        if key in ENCODER:
+            le = ENCODER[key]
+            encoded_list.append(le.transform([value]))
+
+    labeled_list: list = [x[0] for x in encoded_list]
+
+    return labeled_list
 
 
 @app.post("/predict")
-def predict_edibility(features: dict) -> str:
+def predict_edibility(features: dict):
+    try:
+        load_artifacts()
+        transformed_features = transform_data(features)
+        return "Poisonous" if MODEL.predict([transformed_features])[0] else "Edible"
+
+    except Exception as e:
+        raise e
+
+
+if __name__ == '__main__':
     load_artifacts()
-    transformed_features = transform_data(features)
-    return "Poisonous" if MODEL.predict([transformed_features])[0] else "Edible"
+    # for i in ENCODER:
+    #     print(ENCODER[i].classes_)
+
+    d = {
+        "cap-shape": "Bell",
+        "cap-surface": "Smooth",
+        "cap-color": "Brown",
+        "bruises": "Yes",
+        "odor": "Pungent",
+        "gill-attachment": "Free",
+        "gill-spacing": "Close",
+        "gill-size": "Narrow",
+        "gill-color": "Black",
+        "stalk-shape": "Enlarging",
+        "stalk-root": "Equal",
+        "stalk-surface-above-ring": "Smooth",
+        "stalk-surface-below-ring": "Smooth",
+        "stalk-color-above-ring": "White",
+        "stalk-color-below-ring": "White",
+        "veil-type": "Partial",
+        "veil-color": "White",
+        "ring-number": "One",
+        "ring-type": "Pendant",
+        "spore-print-color": "Black",
+        "population": "Scattered",
+        "habitat": "Urban"
+    }
+
+    print(transform_data(d))
