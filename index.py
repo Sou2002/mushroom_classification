@@ -25,7 +25,7 @@ with st.form("form 1"):
     my_dict['gill-attachment'] = col3.selectbox('Gill Attachment', options=(
         'Attached', 'Descending', 'Free', 'Notched'), index=None, placeholder='Choose an option')
     my_dict['gill-spacing'] = col1.selectbox('Gill Spacing', options=('Close', 'Crowded',
-                                                                       'Distant'), index=None, placeholder='Choose an option')
+                                                                      'Distant'), index=None, placeholder='Choose an option')
     my_dict['gill-size'] = col2.selectbox('Gill Size', options=('Broad', 'Narrow'),
                                           index=None, placeholder='Choose an option')
     my_dict['gill-color'] = col3.selectbox('Gill Color', options=('Black', 'Brown', 'Buff', 'Chocolate',
@@ -63,8 +63,13 @@ with st.form("form 1"):
 
     if submit:
         if not all(my_dict.values()):
-            st.error('##### **Please fill all the fields.**')
+            st.warning("##### Please fill all the fields!", icon="⚠️")
         else:
             headers = {'Content-Type': 'application/json'}
             req = requests.post(url, data=json.dumps(my_dict), headers=headers)
-            st.write(req.text.strip('"'))
+            result = req.text.strip('"')
+
+            if result == "Edible":
+                st.success("##### Edible", icon="✅")
+            else:
+                st.error("##### Poisonous", icon="⛔")
