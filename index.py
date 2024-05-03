@@ -1,5 +1,6 @@
 import streamlit as st
 import requests
+import json
 
 st.set_page_config(layout="wide")
 
@@ -64,6 +65,6 @@ with st.form("form 1"):
         if not all(my_dict.values()):
             st.error('##### **Please fill all the fields.**')
         else:
-            req = requests.post(url, data=my_dict)
-            st.write(my_dict, type(my_dict))
-            print(req.text)
+            headers = {'Content-Type': 'application/json'}
+            req = requests.post(url, data=json.dumps(my_dict), headers=headers)
+            st.write(req.text.strip('"'))

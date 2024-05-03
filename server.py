@@ -42,7 +42,7 @@ def transform_data(data: dict) -> list[int]:
 async def predict_edibility(features: dict):
     try:
         load_artifacts()
-        transformed_features = transform_data(features)
+        transformed_features: list = transform_data(features)
         return "Poisonous" if MODEL.predict([transformed_features])[0] else "Edible"
 
     except Exception as e:
