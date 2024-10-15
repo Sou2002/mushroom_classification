@@ -1,3 +1,3 @@
 python3 server.py &
 
-streamlit run app.py
+streamlit run index.py
